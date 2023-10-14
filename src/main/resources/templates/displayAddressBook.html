@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Created AddressBook</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <h1>AddressBook ID: <span th:text="${addressBook.id}"></span></h1>
+  <a href="newBuddyInfo.html" th:href="@{/newBuddy(addressBookId=${addressBook.id})}">Add a buddy</a>
+  <a href="allAddressBooks.html" th:href="@{/}">back</a>
+  <hr />
+  <h2 style="text-decoration: underline;">Buddies in book -> SIZE: <span th:text="${addressBook.getNumOfBuddies()}"></span></h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Number</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr th:each="buddy : ${addressBook.getBook()}">
+        <td><span th:text="${buddy.getId()}"></span></td>
+        <td><span th:text="${buddy.getName()}"></span></td>
+        <td><span th:text="${buddy.getPhoneNumber()}"></span></td>
+        <td><a href="/deleteBuddy" th:href="@{/deleteBuddy(addressBookId=${addressBook.id}, buddyId=${buddy.id})}">Delete Buddy</a></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Created AddressBook</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Home Page</h1>
+<p><a href="/displayAddressBook">Create an AddressBook</a></p>
+<hr />
+<h1>All Address Books Available</h1>
+<ul>
+    <li th:each="book : ${books}"> <!-- Loop through the list of books -->
+        <p><a href="/displayAddressBook" th:href="@{/displayAddressBook(addressBookId=${book.id})}">AddressBook#<span th:text="${book.id}"></span></a></p>
+    </li>
+</ul>
+</body>
+</html>

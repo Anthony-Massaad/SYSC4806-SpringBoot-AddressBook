@@ -27,6 +27,7 @@ public class WebApplicationTest {
 
     @Test
     public void testDisplayAddressBookMapping() throws Exception {
+        System.out.println("TESTING: displayAddressBook()");
         this.mockMvc.perform(get("/displayAddressBook")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().contentType("text/html;charset=UTF-8"))
                 .andExpect(content().string(containsString("AddressBook ID:")));

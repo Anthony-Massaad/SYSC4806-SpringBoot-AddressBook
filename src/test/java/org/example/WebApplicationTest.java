@@ -19,6 +19,7 @@ public class WebApplicationTest {
 
     @Test
     public void testHomePageMapping() throws Exception {
+        System.out.println("TESTING: testHomePageMapping()");
         this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().contentType("text/html;charset=UTF-8"))
                 .andExpect(content().string(containsString("Home Page")));

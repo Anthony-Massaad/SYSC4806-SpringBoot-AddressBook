@@ -25,7 +25,7 @@ public class RestBuddyInfoControllerTest {
         int buddyNumber = 12345;
         Long addressBookId = 1L;
         System.out.println("Creating an address book");
-        mockMvc.perform(post("/api/addressbooks/")
+        mockMvc.perform(post("/api/addressbooks/create")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)).andExpect(status().isOk());
 
         System.out.println("Address book created");
@@ -47,7 +47,7 @@ public class RestBuddyInfoControllerTest {
         int buddyNumber = 12345;
         Long addressBookId = 1L;
         System.out.println("Creating an address book");
-        ResultActions resultAddressbook = mockMvc.perform(post("/api/addressbooks/")
+        ResultActions resultAddressbook = mockMvc.perform(post("/api/addressbooks/create")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)).andExpect(status().isOk());
 
         System.out.println("Address book created");

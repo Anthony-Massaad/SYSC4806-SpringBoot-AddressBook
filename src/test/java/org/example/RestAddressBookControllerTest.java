@@ -27,7 +27,7 @@ public class RestAddressBookControllerTest {
     @Test
     public void testGetAddressBook() throws Exception {
         Long addressBookId = 1L;
-        mockMvc.perform(post("/api/addressbooks/"))
+        mockMvc.perform(post("/api/addressbooks/create"))
                 .andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE));
 
@@ -38,7 +38,7 @@ public class RestAddressBookControllerTest {
 
     @Test
     public void testCreateAddressBook() throws Exception {
-        mockMvc.perform(post("/api/addressbooks/"))
+        mockMvc.perform(post("/api/addressbooks/create"))
                 .andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE));
     }

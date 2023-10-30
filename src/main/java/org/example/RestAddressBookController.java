@@ -1,5 +1,6 @@
 package org.example;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,12 +32,22 @@ public class RestAddressBookController {
             throw new Error("Address book not found with id: " + addressBookId);
         }
     }
-
-    @PostMapping("/")
+    @PostMapping(value = "/create")
     public AddressBook createAddressBook() {
         AddressBook book = new AddressBook();
         System.out.println("AddressBook Created");
         repo.save(book);
+        System.out.println("AddressBook Saved");
+        return book;
+    }
+
+
+    @PostMapping(value = "/", produces = "application/json")
+    public AddressBook createAddressBook(HttpServletResponse response) {
+        AddressBook book = new AddressBook();
+        System.out.println("AddressBook Created");
+        repo.save(book);
+        response.setContentType("text/plain");
         System.out.println("AddressBook Saved");
         return book;
     }

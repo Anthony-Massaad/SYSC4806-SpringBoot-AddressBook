@@ -3,16 +3,34 @@
 <head>
     <title>Created AddressBook</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
 <h1>Home Page</h1>
-<p><a href="/displayAddressBook">Create an AddressBook</a></p>
+<form th:action="@{/api/addressbooks/}" method="post" id="create-address-book">
+    <button type="submit">Create a new AddressBook</button>
+</form>
 <hr />
 <h1>All Address Books Available</h1>
-<ul>
-    <li th:each="book : ${books}"> <!-- Loop through the list of books -->
+<ul id="address-books-created">
+    <li th:each="book : ${books}">
         <p><a href="/displayAddressBook" th:href="@{/displayAddressBook(addressBookId=${book.id})}">AddressBook#<span th:text="${book.id}"></span></a></p>
     </li>
 </ul>
+
+<script>
+    $(document).on("submit", "#create-address-book", (event) => {
+        event.preventDefault();
+        $.ajax({
+            type: $("#create-address-book").attr("method"),
+          url: "/api/addressbooks/"
+      }).done((data) => {
+          const id = data.id;
+          $("#address-books-created").append(
+              `<li><p><a href="/displayAddressBook" th:href="@{/displayAddressBook(addressBookId=${id})}">AddressBook#${id}</a></p></li>`
+          );
+      });
+    });
+</script>
 </body>
 </html>
